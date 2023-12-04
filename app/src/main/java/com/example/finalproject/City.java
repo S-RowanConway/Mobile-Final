@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+// Rowan Conway
 public class City implements Parcelable {
     public final String name;
     public final int population;

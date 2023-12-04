@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+// Rowan Conway
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,6 +14,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private ActivityDetailsBinding binding;
 
+    // region wikiPage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,4 +43,5 @@ public class DetailsActivity extends AppCompatActivity {
             binding.webView.loadUrl("https://www.wikidata.org/wiki/" + city.wikiData);
         }
     }
+    // endregion
 }

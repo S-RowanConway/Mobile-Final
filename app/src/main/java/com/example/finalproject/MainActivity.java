@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+// Rowan Conway
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -21,14 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        // region searchCall
         binding.searchButton.setOnClickListener(view -> {
+            // search starts
             binding.progressBar.setVisibility(View.VISIBLE);
             InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             DataSource source = DataSource.getInstance(this);
             binding.globe.setVisibility(View.INVISIBLE);
             source.search(binding.searchBar.getText().toString(), cities -> {
+                // search complete data displayed
                 binding.progressBar.setVisibility(View.INVISIBLE);
                 cities.sort(Comparator.comparingInt((ToIntFunction<City>) city -> city.population).reversed());
                 ItemAdapter adapter = new ItemAdapter(cities);
@@ -40,5 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 binding.progressBar.setVisibility(View.INVISIBLE);
             });
         });
+        // endregion
     }
 }

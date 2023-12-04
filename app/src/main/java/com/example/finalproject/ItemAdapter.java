@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+// Rowan Conway
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
+    // region adapterMethods
     private List<City> cityList;
     public ItemAdapter(List<City> cityList)
     {
@@ -37,7 +40,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public int getItemCount() {
         return cityList.size();
     }
+    // endregion
 
+    // region recycle methods
     public static class ItemViewHolder extends RecyclerView.ViewHolder
     {
         private CityEntryBinding binding;
@@ -45,6 +50,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private City city;
         public ItemViewHolder(CityEntryBinding binding, Context context)
         {
+            // sets up the context and variables. Then it sets up a click listener. creates intent so the DetailsActivity can begin.
             super(binding.getRoot());
             this.binding = binding;
             this.context = context;
@@ -54,11 +60,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 context.startActivity(intent);
             });
         }
-
         public void bind(City city)
         {
             this.city = city;
             binding.cityInfo.setText(context.getString(R.string.city_info, city.name, city.population));
         }
     }
+    // endregion
 }

@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+// Rowan Conway
+
 import android.content.Context;
 
 
@@ -27,6 +29,7 @@ public class DataSource {
 
     private RequestQueue requestQueue;
 
+    // region accessApi
     public static DataSource getInstance(Context context)
     {
         if (instance == null)
@@ -44,7 +47,11 @@ public class DataSource {
                 +"\",i];node[place=city][population][wikidata](area);out qt;";
 
         String url = "https://overpass-api.de/api/interpreter";
+        // endregion
 
+        // region enterRequest
+
+        // String request is used to iterate over the information in the JSON array
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {
                 JSONArray json = new JSONObject(response).getJSONArray("elements");
@@ -60,6 +67,7 @@ public class DataSource {
                 throw new RuntimeException(e);
             }
         }, onError::accept){
+            // these methods for data display
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
@@ -74,5 +82,6 @@ public class DataSource {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
+    // endregion
 
 }
